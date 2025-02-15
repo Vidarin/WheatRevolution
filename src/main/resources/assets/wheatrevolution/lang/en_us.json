@@ -5,10 +5,21 @@
   "creativetab.mod_misc": "Wheat Revolution - Miscellaneous",
 
   "gui.compressor": "Compressor",
+  "gui.lathe": "Lathe",
 
   "item.wheatrevolution.steel_ingot": "Steel Ingot",
   "item.wheatrevolution.steel_nugget": "Steel Nugget",
+  "item.wheatrevolution.steel_plate": "Steel Plate",
+  "item.wheatrevolution.steel_rod": "Steel Rod",
+
+  "item.wheatrevolution.simple_electronic": "Simple Electronic",
+
+  "item.wheatrevolution.basic_piston": "Basic Piston",
+  "item.wheatrevolution.basic_motor": "Basic Motor",
 
   "block.wheatrevolution.steel_block": "Block of Steel",
-  "block.wheatrevolution.compressor": "Basic Compressor"
+  "block.wheatrevolution.steel_casing": "Steel Casing",
+
+  "block.wheatrevolution.compressor": "Basic Compressor",
+  "block.wheatrevolution.lathe": "Basic Lathe"
 }

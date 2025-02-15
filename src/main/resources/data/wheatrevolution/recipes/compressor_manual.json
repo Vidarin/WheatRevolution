@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "cPc",
+    "CSG",
+    "III"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_casing"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "wheatrevolution:simple_electronic"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "P": {
+      "item": "wheatrevolution:basic_piston"
+    },
+    "c": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:compressor"
+  }
+}

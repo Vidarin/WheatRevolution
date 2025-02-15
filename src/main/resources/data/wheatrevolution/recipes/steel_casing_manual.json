@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "I I",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_plate"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:steel_casing"
+  }
+}

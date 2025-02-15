@@ -1,0 +1,10 @@
+{
+  "type": "wheatrevolution:lathe",
+  "ingredients": [
+    { "item": "minecraft:oak_log" }
+  ],
+  "result": {
+    "count": 32,
+    "item": "minecraft:stick"
+  }
+}

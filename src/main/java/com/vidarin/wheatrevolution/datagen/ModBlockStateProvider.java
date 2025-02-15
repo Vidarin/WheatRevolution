@@ -16,6 +16,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(BlockRegistry.STEEL_BLOCK);
+        blockWithItem(BlockRegistry.STEEL_CASING);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

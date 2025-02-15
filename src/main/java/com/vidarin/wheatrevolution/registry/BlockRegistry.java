@@ -20,8 +20,12 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> STEEL_BLOCK = registerBlockSimple("steel_block", BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(6.0F, 8.0F));
 
+    public static final RegistryObject<Block> STEEL_CASING = registerBlockSimple("steel_casing", BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(7.0F, 9.0F));
+
     public static final RegistryObject<Block> COMPRESSOR_MACHINE = registerBlock("compressor",
             () -> new CompressorMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
+    public static final RegistryObject<Block> LATHE_MACHINE = registerBlock("lathe",
+            () -> new LatheMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
 
     public static final RegistryObject<Block> MODEL_BLOCK = registerBlock("model_block", ModelBlock::new);
 

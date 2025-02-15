@@ -14,6 +14,12 @@ public class ItemRegistry {
     public static final RegistryObject<Item> STEEL_INGOT = registerSimple("steel_ingot");
     public static final RegistryObject<Item> STEEL_NUGGET = registerSimple("steel_nugget");
     public static final RegistryObject<Item> STEEL_PLATE = registerSimple("steel_plate");
+    public static final RegistryObject<Item> STEEL_ROD = registerSimple("steel_rod");
+
+    public static final RegistryObject<Item> SIMPLE_ELECTRONIC = registerSimple("simple_electronic");
+
+    public static final RegistryObject<Item> BASIC_MOTOR = registerSimple("basic_motor");
+    public static final RegistryObject<Item> BASIC_PISTON = registerSimple("basic_piston");
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -7,12 +7,16 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings("unused")
 public class RecipeHandler {
     private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, WheatRevolution.MODID);
 
     public static final RegistryObject<RecipeSerializer<CompressorRecipe>> COMPRESSOR_SERIALIZER =
             SERIALIZERS.register("compressing", () -> CompressorRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<LatheRecipe>> LATHE_SERIALIZER =
+            SERIALIZERS.register("lathe", () -> LatheRecipe.Serializer.INSTANCE);
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

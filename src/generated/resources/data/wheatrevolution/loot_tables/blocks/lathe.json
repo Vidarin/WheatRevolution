@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "wheatrevolution:lathe"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "wheatrevolution:blocks/model_block"
+  "random_sequence": "wheatrevolution:blocks/lathe"
 }

@@ -1,6 +1,7 @@
 package com.vidarin.wheatrevolution.registry;
 
 import com.vidarin.wheatrevolution.gui.menu.CompressorMachineMenu;
+import com.vidarin.wheatrevolution.gui.menu.LatheMachineMenu;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -15,6 +16,7 @@ public class GuiRegistry {
     public static final DeferredRegister<MenuType<?>> GUIS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, WheatRevolution.MODID);
 
     public static final RegistryObject<MenuType<CompressorMachineMenu>> COMPRESSOR_MACHINE_MENU = registerMenuType("compressor_menu", CompressorMachineMenu::new);
+    public static final RegistryObject<MenuType<LatheMachineMenu>> LATHE_MACHINE_MENU = registerMenuType("lathe_menu", LatheMachineMenu::new);
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return GUIS.register(name, () -> IForgeMenuType.create(factory));

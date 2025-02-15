@@ -22,22 +22,30 @@ public class ModCreativeTabs {
                         output.accept(ItemRegistry.STEEL_INGOT.get());
                         output.accept(ItemRegistry.STEEL_NUGGET.get());
                         output.accept(BlockRegistry.STEEL_BLOCK.get());
+
+                        output.accept(ItemRegistry.STEEL_PLATE.get());
+                        output.accept(ItemRegistry.STEEL_ROD.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> MOD_COMPONENTS = TABS.register("mod_components",
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(WheatdeathoftheuniverseModItems.ELECTRONIC.get()))
+                    .icon(() -> new ItemStack(ItemRegistry.SIMPLE_ELECTRONIC.get()))
                     .title(Component.translatable("creativetab.mod_components"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(WheatdeathoftheuniverseModItems.ELECTRONIC.get());
+                        output.accept(ItemRegistry.SIMPLE_ELECTRONIC.get());
+                        output.accept(BlockRegistry.STEEL_CASING.get());
+
+                        output.accept(ItemRegistry.BASIC_PISTON.get());
+                        output.accept(ItemRegistry.BASIC_MOTOR.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> MOD_MACHINES = TABS.register("mod_machines",
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(WheatdeathoftheuniverseModItems.ALLOYFURNACE.get()))
+                    .icon(() -> new ItemStack(BlockRegistry.COMPRESSOR_MACHINE.get()))
                     .title(Component.translatable("creativetab.mod_machines"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(BlockRegistry.COMPRESSOR_MACHINE.get());
+                        output.accept(BlockRegistry.LATHE_MACHINE.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> MOD_MISC = TABS.register("mod_misc",

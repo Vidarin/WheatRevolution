@@ -1,10 +1,10 @@
 package com.vidarin.wheatrevolution.main;
 
 import com.mojang.logging.LogUtils;
-import com.vidarin.wheatrevolution.gui.screen.CompressorMachineScreen;
+import com.vidarin.wheatrevolution.gui.screen.*;
 import com.vidarin.wheatrevolution.recipe.RecipeHandler;
 import com.vidarin.wheatrevolution.registry.*;
-import com.vidarin.wheatrevolution.render.CompressorMachineRenderer;
+import com.vidarin.wheatrevolution.render.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -92,6 +92,7 @@ public class WheatRevolution
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MenuScreens.register(GuiRegistry.COMPRESSOR_MACHINE_MENU.get(), CompressorMachineScreen::new);
+            MenuScreens.register(GuiRegistry.LATHE_MACHINE_MENU.get(), LatheMachineScreen::new);
 
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COMPRESSOR_MACHINE.get(), RenderType.translucent());
         }

@@ -19,7 +19,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(BlockRegistry.STEEL_BLOCK.get());
+        dropSelf(BlockRegistry.STEEL_CASING.get());
         dropSelf(BlockRegistry.COMPRESSOR_MACHINE.get());
+        dropSelf(BlockRegistry.LATHE_MACHINE.get());
     }
 
     @Override

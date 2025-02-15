@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SRS",
+    "CRC",
+    "CRC"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_plate"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "R": {
+      "item": "wheatrevolution:steel_rod"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:basic_motor"
+  }
+}

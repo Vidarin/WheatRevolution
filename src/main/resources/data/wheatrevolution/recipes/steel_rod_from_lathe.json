@@ -1,0 +1,10 @@
+{
+  "type": "wheatrevolution:lathe",
+  "ingredients": [
+    { "item": "wheatrevolution:steel_ingot" }
+  ],
+  "result": {
+    "count": 1,
+    "item": "wheatrevolution:steel_rod"
+  }
+}

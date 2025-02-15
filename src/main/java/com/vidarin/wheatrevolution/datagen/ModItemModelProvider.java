@@ -20,6 +20,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         itemGenerated(ItemRegistry.STEEL_INGOT);
         itemGenerated(ItemRegistry.STEEL_NUGGET);
         itemGenerated(ItemRegistry.STEEL_PLATE);
+        itemHandheld(ItemRegistry.STEEL_ROD);
+
+        itemGenerated(ItemRegistry.SIMPLE_ELECTRONIC);
+
+        itemGenerated(ItemRegistry.BASIC_MOTOR);
+        itemGenerated(ItemRegistry.BASIC_PISTON);
     }
 
     private ItemModelBuilder itemGenerated(RegistryObject<Item> item) {
@@ -28,6 +34,15 @@ public class ModItemModelProvider extends ItemModelProvider {
                 new ResourceLocation("item/generated")).texture(
                         "layer0",
                              new ResourceLocation(WheatRevolution.MODID, "item/" + item.getId().getPath())
+        );
+    }
+
+    private ItemModelBuilder itemHandheld(RegistryObject<Item> item) {
+        return withExistingParent(
+                item.getId().getPath(),
+                new ResourceLocation("item/handheld")).texture(
+                "layer0",
+                new ResourceLocation(WheatRevolution.MODID, "item/" + item.getId().getPath())
         );
     }
 }

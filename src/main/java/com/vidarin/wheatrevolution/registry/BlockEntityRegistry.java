@@ -1,6 +1,7 @@
 package com.vidarin.wheatrevolution.registry;
 
 import com.vidarin.wheatrevolution.block.entity.CompressorMachineEntity;
+import com.vidarin.wheatrevolution.block.entity.LatheMachineEntity;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +15,11 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<CompressorMachineEntity>> COMPRESSOR_MACHINE_ENTITY = BLOCK_ENTITIES.register(
       "compressor_block_entity",
             () -> BlockEntityType.Builder.of(CompressorMachineEntity::new, BlockRegistry.COMPRESSOR_MACHINE.get()).build(null)
+    );
+
+    public static final RegistryObject<BlockEntityType<LatheMachineEntity>> LATHE_MACHINE_ENTITY = BLOCK_ENTITIES.register(
+      "lathe_machine_entity",
+            () -> BlockEntityType.Builder.of(LatheMachineEntity::new, BlockRegistry.LATHE_MACHINE.get()).build(null)
     );
 
     public static void register(IEventBus eventBus) {

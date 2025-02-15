@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    "MRE",
+    "SCS"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_ingot"
+    },
+    "E": {
+      "item": "wheatrevolution:simple_electronic"
+    },
+    "M": {
+      "item": "wheatrevolution:basic_motor"
+    },
+    "C": {
+      "item": "wheatrevolution:steel_casing"
+    },
+    "R": {
+      "item": "wheatrevolution:steel_rod"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:lathe"
+  }
+}

@@ -1,3 +1,7 @@
 {
-  "values": []
+  "values": [
+    "wheatrevolution:steel_casing",
+    "wheatrevolution:compressor",
+    "wheatrevolution:lathe"
+  ]
 }

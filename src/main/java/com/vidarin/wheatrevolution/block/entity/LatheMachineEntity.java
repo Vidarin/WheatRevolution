@@ -1,8 +1,8 @@
 package com.vidarin.wheatrevolution.block.entity;
 
-import com.vidarin.wheatrevolution.gui.menu.CompressorMachineMenu;
+import com.vidarin.wheatrevolution.gui.menu.LatheMachineMenu;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
-import com.vidarin.wheatrevolution.recipe.CompressorRecipe;
+import com.vidarin.wheatrevolution.recipe.LatheRecipe;
 import com.vidarin.wheatrevolution.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CompressorMachineEntity extends BlockEntity implements MenuProvider {
+public class LatheMachineEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler inventoryHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -53,22 +53,25 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
     private int currentProgress = 0;
     private int maxProgress = 100;
 
+    private int rodPosition = 0;
+    private boolean moveRodRight = true;
+
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private final EnergyStorage energyStorage;
 
-    public CompressorMachineEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.COMPRESSOR_MACHINE_ENTITY.get(), pos, state);
+    public LatheMachineEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityRegistry.LATHE_MACHINE_ENTITY.get(), pos, state);
 
-        this.energyStorage = new EnergyStorage(2048, 16) {
+        this.energyStorage = new EnergyStorage(3072, 24) {
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
                 int value = super.receiveEnergy(maxReceive, simulate);
                 if (!simulate) {
-                    CompressorMachineEntity.this.setChanged();
-                    assert CompressorMachineEntity.this.level != null;
-                    CompressorMachineEntity.this.level.sendBlockUpdated(CompressorMachineEntity.this.worldPosition,
-                            CompressorMachineEntity.this.level.getBlockState(CompressorMachineEntity.this.worldPosition),
-                            CompressorMachineEntity.this.level.getBlockState(CompressorMachineEntity.this.worldPosition), 2);
+                    LatheMachineEntity.this.setChanged();
+                    assert LatheMachineEntity.this.level != null;
+                    LatheMachineEntity.this.level.sendBlockUpdated(LatheMachineEntity.this.worldPosition,
+                            LatheMachineEntity.this.level.getBlockState(LatheMachineEntity.this.worldPosition),
+                            LatheMachineEntity.this.level.getBlockState(LatheMachineEntity.this.worldPosition), 2);
                 }
                 return value;
             }
@@ -77,11 +80,11 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
             public int extractEnergy(int maxExtract, boolean simulate) {
                 int value = super.extractEnergy(maxExtract, simulate);
                 if (!simulate) {
-                    CompressorMachineEntity.this.setChanged();
-                    assert CompressorMachineEntity.this.level != null;
-                    CompressorMachineEntity.this.level.sendBlockUpdated(CompressorMachineEntity.this.worldPosition,
-                            CompressorMachineEntity.this.level.getBlockState(CompressorMachineEntity.this.worldPosition),
-                            CompressorMachineEntity.this.level.getBlockState(CompressorMachineEntity.this.worldPosition), 2);
+                    LatheMachineEntity.this.setChanged();
+                    assert LatheMachineEntity.this.level != null;
+                    LatheMachineEntity.this.level.sendBlockUpdated(LatheMachineEntity.this.worldPosition,
+                            LatheMachineEntity.this.level.getBlockState(LatheMachineEntity.this.worldPosition),
+                            LatheMachineEntity.this.level.getBlockState(LatheMachineEntity.this.worldPosition), 2);
                 }
                 return value;
             }
@@ -91,10 +94,10 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
             @Override
             public int get(int i) {
                 return switch (i) {
-                    case 0 -> CompressorMachineEntity.this.currentProgress;
-                    case 1 -> CompressorMachineEntity.this.maxProgress;
-                    case 2 -> CompressorMachineEntity.this.energyStorage.getEnergyStored();
-                    case 3 -> CompressorMachineEntity.this.energyStorage.getMaxEnergyStored();
+                    case 0 -> LatheMachineEntity.this.currentProgress;
+                    case 1 -> LatheMachineEntity.this.maxProgress;
+                    case 2 -> LatheMachineEntity.this.energyStorage.getEnergyStored();
+                    case 3 -> LatheMachineEntity.this.energyStorage.getMaxEnergyStored();
                     default -> 0;
                 };
             }
@@ -102,8 +105,8 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
             @Override
             public void set(int i, int value) {
                 switch (i) {
-                    case 0 -> CompressorMachineEntity.this.currentProgress = value;
-                    case 1 -> CompressorMachineEntity.this.maxProgress = value;
+                    case 0 -> LatheMachineEntity.this.currentProgress = value;
+                    case 1 -> LatheMachineEntity.this.maxProgress = value;
                 }
             }
 
@@ -119,6 +122,8 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
         nbt.put("inventory", inventoryHandler.serializeNBT());
         nbt.put("energy_storage", energyStorage.serializeNBT());
         nbt.putInt("progress", currentProgress);
+        nbt.putInt("rod_position", rodPosition);
+        nbt.putBoolean("move_rod_right", moveRodRight);
 
         super.saveAdditional(nbt);
     }
@@ -129,11 +134,13 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
         this.inventoryHandler.deserializeNBT(nbt.getCompound("inventory"));
         this.energyStorage.deserializeNBT(nbt.get("energy_storage"));
         this.currentProgress = nbt.getInt("progress");
+        this.rodPosition = nbt.getInt("rod_position");
+        this.moveRodRight = nbt.getBoolean("move_rod_right");
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("gui.compressor");
+        return Component.translatable("gui.lathe");
     }
 
     public void dropItems() {
@@ -167,19 +174,19 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
         lazyItemHandler.invalidate();
     }
 
-    public ItemStack getStackForRendering() {
+    public @Nullable ItemStack getStackForRendering() {
         if (inventoryHandler.getStackInSlot(INPUT_SLOT).isEmpty())
-            return inventoryHandler.getStackInSlot(OUTPUT_SLOT);
+            return null;
         return inventoryHandler.getStackInSlot(INPUT_SLOT);
     }
 
-    public int getProgress() {
-        return currentProgress;
+    public int getRodPosition() {
+        return rodPosition;
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
-        return new CompressorMachineMenu(containerId, inventory, this, this.data);
+        return new LatheMachineMenu(containerId, inventory, this, this.data);
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
@@ -195,10 +202,10 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
     }
 
     private void finishRecipe() {
-        Optional<CompressorRecipe> recipe = getCurrentRecipe();
+        Optional<LatheRecipe> recipe = getCurrentRecipe();
 
         if (recipe.isEmpty()) {
-            WheatRevolution.LOGGER.warn("Compressor tried to craft empty recipe!");
+            WheatRevolution.LOGGER.warn("Lathe tried to craft empty recipe!");
             return;
         }
 
@@ -212,20 +219,32 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
 
     private void progress() {
         this.currentProgress++;
-        this.energyStorage.extractEnergy(4, false);
+        this.energyStorage.extractEnergy(6, false);
+
+        if (moveRodRight) {
+            rodPosition++;
+            if (rodPosition >= 100) {
+                moveRodRight = false;
+            }
+        } else {
+            rodPosition--;
+            if (rodPosition <= 0) {
+                moveRodRight = true;
+            }
+        }
     }
 
     private boolean hasValidRecipe() {
-        Optional<CompressorRecipe> recipe = getCurrentRecipe();
+        Optional<LatheRecipe> recipe = getCurrentRecipe();
 
         if (recipe.isEmpty()) return false;
 
         ItemStack result = recipe.get().getResultItem(null);
 
-        return canOutput(result.getCount(), result.getItem()) && this.energyStorage.getEnergyStored() >= 4;
+        return canOutput(result.getCount(), result.getItem()) && this.energyStorage.getEnergyStored() >= 6;
     }
 
-    private Optional<CompressorRecipe> getCurrentRecipe() {
+    private Optional<LatheRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.inventoryHandler.getSlots());
 
         for (int i = 0; i < inventoryHandler.getSlots(); i++) {
@@ -233,7 +252,7 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
         }
 
         assert this.level != null;
-        return this.level.getRecipeManager().getRecipeFor(CompressorRecipe.Type.INSTANCE, inventory, level);
+        return this.level.getRecipeManager().getRecipeFor(LatheRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean canOutput(int count, Item item) {
