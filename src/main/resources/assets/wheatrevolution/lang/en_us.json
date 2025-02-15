@@ -1,0 +1,14 @@
+{
+  "creativetab.mod_materials": "Wheat Revolution - Materials",
+  "creativetab.mod_components": "Wheat Revolution - Components",
+  "creativetab.mod_machines": "Wheat Revolution - Machines",
+  "creativetab.mod_misc": "Wheat Revolution - Miscellaneous",
+
+  "gui.compressor": "Compressor",
+
+  "item.wheatrevolution.steel_ingot": "Steel Ingot",
+  "item.wheatrevolution.steel_nugget": "Steel Nugget",
+
+  "block.wheatrevolution.steel_block": "Block of Steel",
+  "block.wheatrevolution.compressor": "Basic Compressor"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "wheatrevolution:steel_block"
+    }
+  ],
+  "result": {
+    "item": "wheatrevolution:steel_ingot",
+    "count": 9
+  }
+}

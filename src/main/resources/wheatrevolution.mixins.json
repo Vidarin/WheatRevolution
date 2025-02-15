@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.vidarin.wheatrevolution.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "wheatrevolution.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
