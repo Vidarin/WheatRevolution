@@ -7,6 +7,12 @@
   "gui.compressor": "Compressor",
   "gui.lathe": "Lathe",
 
+  "subtitle.compressor": "Compressor Compresses",
+
+  "subtitle.lathe_start": "Lathe Starts",
+  "subtitle.lathe_stop": "Lathe Stops",
+  "subtitle.lathe_running": "Lathe Noises",
+
   "item.wheatrevolution.steel_ingot": "Steel Ingot",
   "item.wheatrevolution.steel_nugget": "Steel Nugget",
   "item.wheatrevolution.steel_plate": "Steel Plate",

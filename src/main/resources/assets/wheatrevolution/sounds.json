@@ -1,0 +1,6 @@
+{
+  "compressor": { "subtitles": "subtitle.compressor", "sounds": ["wheatrevolution:compressor"] },
+  "lathe_start": { "subtitles": "subtitle.lathe_start", "sounds": ["wheatrevolution:lathe_start"] },
+  "lathe_stop": { "subtitles": "subtitle.lathe_stop", "sounds": ["wheatrevolution:lathe_stop"] },
+  "lathe_running": { "subtitles": "subtitle.lathe_running", "sounds": ["wheatrevolution:lathe_running"] }
+}

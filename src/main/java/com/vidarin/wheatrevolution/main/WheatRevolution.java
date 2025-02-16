@@ -42,6 +42,8 @@ public class WheatRevolution
         ItemRegistry.register(modEventBus);
         BlockRegistry.register(modEventBus);
 
+        SoundRegistry.SOUND_EVENTS.register(modEventBus);
+
         BlockEntityRegistry.register(modEventBus);
         GuiRegistry.register(modEventBus);
 
@@ -100,6 +102,7 @@ public class WheatRevolution
         @SubscribeEvent
         public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(BlockEntityRegistry.COMPRESSOR_MACHINE_ENTITY.get(), CompressorMachineRenderer::new);
+            event.registerBlockEntityRenderer(BlockEntityRegistry.LATHE_MACHINE_ENTITY.get(), LatheMachineRenderer::new);
         }
     }
 }

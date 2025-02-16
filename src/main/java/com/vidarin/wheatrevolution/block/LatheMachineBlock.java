@@ -29,7 +29,8 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("deprecation")
 public class LatheMachineBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    private static final VoxelShape SHAPE = Block.box(2.0F, 0.0F, 0.0F, 12.0F, 8.0F, 16.0F);
+    private static final VoxelShape SHAPE_NS = Block.box(0.0F, 0.0F, 2.0F, 16.0F, 8.0F, 14.0F);
+    private static final VoxelShape SHAPE_WE = Block.box(2.0F, 0.0F, 0.0F, 14.0F, 8.0F, 16.0F);
 
     public LatheMachineBlock(Properties properties) {
         super(properties);
@@ -42,7 +43,8 @@ public class LatheMachineBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        return SHAPE;
+        boolean facingWE = state.getValue(FACING) == Direction.WEST || state.getValue(FACING) == Direction.EAST;
+        return facingWE ? SHAPE_WE : SHAPE_NS;
     }
 
     @Override

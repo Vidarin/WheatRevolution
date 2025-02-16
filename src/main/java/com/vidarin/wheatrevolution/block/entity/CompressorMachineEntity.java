@@ -4,6 +4,7 @@ import com.vidarin.wheatrevolution.gui.menu.CompressorMachineMenu;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import com.vidarin.wheatrevolution.recipe.CompressorRecipe;
 import com.vidarin.wheatrevolution.registry.BlockEntityRegistry;
+import com.vidarin.wheatrevolution.registry.SoundRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +12,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.network.protocol.game.ClientboundStopSoundPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -52,6 +57,8 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
     protected final ContainerData data;
     private int currentProgress = 0;
     private int maxProgress = 100;
+
+    private boolean inCooldown = false;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private final EnergyStorage energyStorage;
@@ -183,15 +190,31 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        if (hasValidRecipe()) {
+        if (hasValidRecipe() && !inCooldown) {
+            if (currentProgress == 1 && this.level != null) {
+                this.level.playSound(null, this.getBlockPos(), SoundRegistry.COMPRESSOR_ACTIVE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
+            }
             progress();
             setChanged(level, blockPos, blockState);
             if (currentProgress >= maxProgress) {
                 finishRecipe();
-                currentProgress = 0;
+                inCooldown = true;
             }
-        } else
-            currentProgress = 0;
+        } else {
+            if (currentProgress > 0)
+                currentProgress -= 5;
+            if (currentProgress <= 0 && inCooldown) {
+                currentProgress = 0;
+                inCooldown = false;
+                if (this.level != null) {
+                    this.level.playSound(null, this.getBlockPos(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 0.1F, 2.0F);
+                }
+            }
+            if (this.level != null) {
+                ((ServerLevel) this.level).getPlayers(serverPlayer -> true)
+                        .forEach(serverPlayer -> serverPlayer.connection.send(new ClientboundStopSoundPacket(SoundRegistry.COMPRESSOR_ACTIVE_SOUND.get().getLocation(), SoundSource.BLOCKS)));
+            }
+        }
     }
 
     private void finishRecipe() {
@@ -208,6 +231,11 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
 
         this.inventoryHandler.setStackInSlot(OUTPUT_SLOT,
                 new ItemStack(result.getItem(), this.inventoryHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+
+        if (this.level != null) {
+            this.level.playSound(null, this.getBlockPos(), SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 0.1F, 0.8F);
+            this.level.playSound(null, this.getBlockPos(), SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.05F, 1.0F);
+        }
     }
 
     private void progress() {
