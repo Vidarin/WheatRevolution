@@ -63,7 +63,7 @@ public class CompressorMachineBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        Direction direction = context.getNearestLookingDirection().getOpposite();
+        Direction direction = context.getNearestLookingVerticalDirection().getOpposite();
 
         if (direction == Direction.UP || direction == Direction.DOWN)
             direction = Direction.NORTH;

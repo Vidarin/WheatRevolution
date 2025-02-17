@@ -6,6 +6,7 @@
 
   "gui.compressor": "Compressor",
   "gui.lathe": "Lathe",
+  "gui.ore_factory": "Ore Factory",
 
   "subtitle.compressor": "Compressor Compresses",
 
@@ -27,5 +28,7 @@
   "block.wheatrevolution.steel_casing": "Steel Casing",
 
   "block.wheatrevolution.compressor": "Basic Compressor",
-  "block.wheatrevolution.lathe": "Basic Lathe"
+  "block.wheatrevolution.lathe": "Basic Lathe",
+  "block.wheatrevolution.ore_factory": "Ore Factory",
+  "block.wheatrevolution.ore_factory.desc": "§7Doubles as a better Blast Furnace"
 }

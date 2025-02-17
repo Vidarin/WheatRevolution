@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "BSB",
+    "PFP"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_casing"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    },
+    "B": {
+      "item": "minecraft:bricks"
+    },
+    "P": {
+      "item": "wheatrevolution:basic_piston"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:ore_factory"
+  }
+}

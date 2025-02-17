@@ -3,9 +3,11 @@ package com.vidarin.wheatrevolution.compat;
 
 import com.vidarin.wheatrevolution.gui.screen.CompressorMachineScreen;
 import com.vidarin.wheatrevolution.gui.screen.LatheMachineScreen;
+import com.vidarin.wheatrevolution.gui.screen.OreFactoryMachineScreen;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import com.vidarin.wheatrevolution.recipe.CompressorRecipe;
 import com.vidarin.wheatrevolution.recipe.LatheRecipe;
+import com.vidarin.wheatrevolution.recipe.OreFactoryRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -29,6 +31,7 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new CompressingCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new LatheCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new OreFactoryCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -40,6 +43,8 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
         registration.addRecipes(CompressingCategory.TYPE, compressorRecipes);
         List<LatheRecipe> latheRecipes = recipeManager.getAllRecipesFor(LatheRecipe.Type.INSTANCE);
         registration.addRecipes(LatheCategory.TYPE, latheRecipes);
+        List<OreFactoryRecipe> oreFactoryRecipes = recipeManager.getAllRecipesFor(OreFactoryRecipe.Type.INSTANCE);
+        registration.addRecipes(OreFactoryCategory.TYPE, oreFactoryRecipes);
     }
 
     @Override
@@ -48,5 +53,7 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
                CompressingCategory.TYPE);
         registration.addRecipeClickArea(LatheMachineScreen.class, 51, 32, 55, 17,
                 LatheCategory.TYPE);
+        registration.addRecipeClickArea(OreFactoryMachineScreen.class, 32, 33, 108, 20,
+                OreFactoryCategory.TYPE);
     }
 }

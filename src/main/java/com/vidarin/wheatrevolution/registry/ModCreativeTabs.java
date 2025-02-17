@@ -46,6 +46,7 @@ public class ModCreativeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(BlockRegistry.COMPRESSOR_MACHINE.get());
                         output.accept(BlockRegistry.LATHE_MACHINE.get());
+                        output.accept(BlockRegistry.ORE_FACTORY_MACHINE.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> MOD_MISC = TABS.register("mod_misc",

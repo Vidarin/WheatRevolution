@@ -22,6 +22,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.STEEL_CASING.get());
         dropSelf(BlockRegistry.COMPRESSOR_MACHINE.get());
         dropSelf(BlockRegistry.LATHE_MACHINE.get());
+        dropSelf(BlockRegistry.ORE_FACTORY_MACHINE.get());
     }
 
     @Override

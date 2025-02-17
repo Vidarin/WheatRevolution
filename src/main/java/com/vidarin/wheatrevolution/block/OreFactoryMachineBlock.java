@@ -1,6 +1,6 @@
 package com.vidarin.wheatrevolution.block;
 
-import com.vidarin.wheatrevolution.block.entity.LatheMachineEntity;
+import com.vidarin.wheatrevolution.block.entity.OreFactoryMachineEntity;
 import com.vidarin.wheatrevolution.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
@@ -21,30 +20,20 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
-public class LatheMachineBlock extends BaseEntityBlock {
+public class OreFactoryMachineBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    private static final VoxelShape SHAPE_NS = Block.box(0.0F, 0.0F, 2.0F, 16.0F, 8.0F, 14.0F);
-    private static final VoxelShape SHAPE_WE = Block.box(2.0F, 0.0F, 0.0F, 14.0F, 8.0F, 16.0F);
 
-    public LatheMachineBlock(Properties properties) {
+    public OreFactoryMachineBlock(Properties properties) {
         super(properties);
     }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        boolean facingWE = state.getValue(FACING) == Direction.WEST || state.getValue(FACING) == Direction.EAST;
-        return facingWE ? SHAPE_WE : SHAPE_NS;
     }
 
     @Override
@@ -84,15 +73,15 @@ public class LatheMachineBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new LatheMachineEntity(blockPos, blockState);
+        return new OreFactoryMachineEntity(blockPos, blockState);
     }
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof LatheMachineEntity) {
-                ((LatheMachineEntity) blockEntity).dropItems();
+            if (blockEntity instanceof OreFactoryMachineEntity) {
+                ((OreFactoryMachineEntity) blockEntity).dropItems();
             }
         }
 
@@ -103,10 +92,10 @@ public class LatheMachineBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         if (!level.isClientSide()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if(blockEntity instanceof LatheMachineEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)player), (LatheMachineEntity)blockEntity, pos);
+            if(blockEntity instanceof OreFactoryMachineEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)player), (OreFactoryMachineEntity)blockEntity, pos);
             } else {
-                throw new IllegalStateException("Something went wrong when clicking a Lathe!");
+                throw new IllegalStateException("Something went wrong when clicking an Ore Factory!");
             }
         }
 
@@ -118,7 +107,7 @@ public class LatheMachineBlock extends BaseEntityBlock {
         if (level.isClientSide())
             return null;
 
-        return createTickerHelper(blockEntityType, BlockEntityRegistry.LATHE_MACHINE_ENTITY.get(),
-                (level1, blockPos, blockState, latheMachineEntity) -> latheMachineEntity.tick(level1, blockPos, blockState));
+        return createTickerHelper(blockEntityType, BlockEntityRegistry.ORE_FACTORY_MACHINE_ENTITY.get(),
+                (level1, blockPos, blockState, oreFactoryMachineEntity) -> oreFactoryMachineEntity.tick(level1, blockPos, blockState));
     }
 }

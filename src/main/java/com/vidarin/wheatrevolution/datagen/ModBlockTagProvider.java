@@ -29,7 +29,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.STEEL_CASING.get(),
 
                 BlockRegistry.COMPRESSOR_MACHINE.get(),
-                BlockRegistry.LATHE_MACHINE.get()
+                BlockRegistry.LATHE_MACHINE.get(),
+                BlockRegistry.ORE_FACTORY_MACHINE.get()
         );
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL);
@@ -43,7 +44,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.STEEL_CASING.get(),
 
                 BlockRegistry.COMPRESSOR_MACHINE.get(),
-                BlockRegistry.LATHE_MACHINE.get()
+                BlockRegistry.LATHE_MACHINE.get(),
+                BlockRegistry.ORE_FACTORY_MACHINE.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_AXE);

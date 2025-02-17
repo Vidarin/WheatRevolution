@@ -1,6 +1,7 @@
 package com.vidarin.wheatrevolution.registry;
 
 import com.vidarin.wheatrevolution.block.*;
+import com.vidarin.wheatrevolution.item.BlockItemDescription;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -18,15 +19,26 @@ import java.util.function.Supplier;
 public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WheatRevolution.MODID);
 
-    public static final RegistryObject<Block> STEEL_BLOCK = registerBlockSimple("steel_block", BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(6.0F, 8.0F));
+    /* SIMPLE */
+    public static final RegistryObject<Block> STEEL_BLOCK = registerBlockSimple("steel_block",
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(6.0F, 8.0F));
 
-    public static final RegistryObject<Block> STEEL_CASING = registerBlockSimple("steel_casing", BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(7.0F, 9.0F));
+    public static final RegistryObject<Block> STEEL_CASING = registerBlockSimple("steel_casing",
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(7.0F, 9.0F));
 
+    /* MACHINES */
     public static final RegistryObject<Block> COMPRESSOR_MACHINE = registerBlock("compressor",
             () -> new CompressorMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
+
     public static final RegistryObject<Block> LATHE_MACHINE = registerBlock("lathe",
             () -> new LatheMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
 
+    public static final RegistryObject<Block> ORE_FACTORY_MACHINE = BLOCKS.register("ore_factory",
+            () -> new OreFactoryMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
+    public static final RegistryObject<Item> ORE_FACTORY_ITEM = ItemRegistry.ITEMS.register("ore_factory",
+            () -> new BlockItemDescription(ORE_FACTORY_MACHINE.get(), new Item.Properties(), "ore_factory"));
+
+    /* OTHER */
     public static final RegistryObject<Block> MODEL_BLOCK = registerBlock("model_block", ModelBlock::new);
 
     private static RegistryObject<Block> registerBlockSimple(String name, BlockBehaviour.Properties properties) {

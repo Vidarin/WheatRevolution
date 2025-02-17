@@ -1,0 +1,9 @@
+// 1.20.1	2025-02-17T19:53:37.3763419	Tags for minecraft:block mod id wheatrevolution
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_netherite_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/mineable/axe.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/mineable/hoe.json
+bf413404c7e974b7695ab24c4cdfcc365760ea41 data/minecraft/tags/blocks/mineable/pickaxe.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/mineable/shovel.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/needs_diamond_tool.json
+8f4326be1855a37147e77130dc78b57454070abd data/minecraft/tags/blocks/needs_iron_tool.json
+a7c565148b74ee38805fe85110b855b2255020c3 data/minecraft/tags/blocks/needs_stone_tool.json
