@@ -95,19 +95,21 @@ public class LatheMachineRenderer implements BlockEntityRenderer<LatheMachineEnt
         poseStack.popPose();
 
         // Add particles
-        RandomSource random = Objects.requireNonNull(entity.getLevel()).random;
-        if (entity.getCurrentProgress() > 0 && random.nextInt(Minecraft.getInstance().getFps()) > Minecraft.getInstance().getFps() - 5 &&
-            entity.getRodPosition() > 25 && entity.getRodPosition() < 75) {
-            Minecraft.getInstance().particleEngine.createParticle(
-                    ParticleTypes.LAVA,
-                    entity.getBlockPos().getX() + 0.5F,
-                    entity.getBlockPos().getY() + 0.6F,
-                    entity.getBlockPos().getZ() + 0.5F,
-                    random.nextFloat() - 0.5F,
-                    0.75F,
-                    random.nextFloat() - 0.5F
-            );
-        }
+        try {
+            RandomSource random = Objects.requireNonNull(entity.getLevel()).random;
+            if (entity.getCurrentProgress() > 0 && random.nextInt(Minecraft.getInstance().getFps()) > Minecraft.getInstance().getFps() - 5 &&
+                entity.getRodPosition() > 25 && entity.getRodPosition() < 75) {
+                Minecraft.getInstance().particleEngine.createParticle(
+                        ParticleTypes.LAVA,
+                        entity.getBlockPos().getX() + 0.5F,
+                        entity.getBlockPos().getY() + 0.6F,
+                        entity.getBlockPos().getZ() + 0.5F,
+                        random.nextFloat() - 0.5F,
+                        0.75F,
+                        random.nextFloat() - 0.5F
+                );
+            }
+        } catch (IllegalArgumentException ignored) {}
     }
 
     private int getLight(Level level, BlockPos pos) {

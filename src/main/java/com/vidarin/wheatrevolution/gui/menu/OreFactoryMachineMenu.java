@@ -1,6 +1,7 @@
 package com.vidarin.wheatrevolution.gui.menu;
 
 import com.vidarin.wheatrevolution.block.entity.OreFactoryMachineEntity;
+import com.vidarin.wheatrevolution.registry.BlockEntityRegistry;
 import com.vidarin.wheatrevolution.registry.BlockRegistry;
 import com.vidarin.wheatrevolution.registry.GuiRegistry;
 import net.minecraft.network.FriendlyByteBuf;
@@ -14,6 +15,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class OreFactoryMachineMenu extends AbstractContainerMenu {
     public final OreFactoryMachineEntity blockEntity;
@@ -27,7 +29,11 @@ public class OreFactoryMachineMenu extends AbstractContainerMenu {
     public OreFactoryMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
         super(GuiRegistry.ORE_FACTORY_MACHINE_MENU.get(), containerId);
         checkContainerSize(inventory, 9);
-        this.blockEntity = (OreFactoryMachineEntity) blockEntity;
+        Optional<OreFactoryMachineEntity> entity = inventory.player.level().getBlockEntity(blockEntity.getBlockPos(), BlockEntityRegistry.ORE_FACTORY_MACHINE_ENTITY.get());
+        if (entity.isPresent())
+            this.blockEntity = entity.get();
+        else
+            throw new IllegalArgumentException("Ore Factory Menu called from invalid block entity!");
         this.level = inventory.player.level();
         this.data = data;
 
@@ -51,7 +57,7 @@ public class OreFactoryMachineMenu extends AbstractContainerMenu {
     }
 
     public boolean isCrafting(int processId) {
-        return data.get(processId) < 0;
+        return data.get(processId) > 0;
     }
 
     public int getProgress(int processId) {

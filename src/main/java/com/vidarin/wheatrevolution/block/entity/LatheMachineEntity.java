@@ -46,7 +46,7 @@ public class LatheMachineEntity extends BlockEntity implements MenuProvider {
             setChanged();
             assert level != null;
             if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }
     };
@@ -203,11 +203,11 @@ public class LatheMachineEntity extends BlockEntity implements MenuProvider {
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         if (hasValidRecipe()) {
             if (currentProgress == 1 && this.level != null && !running) {
-                this.level.playSound(null, this.getBlockPos(), SoundRegistry.LATHE_START_SOUND.get(), SoundSource.BLOCKS, 0.2F, 1.0F);
+                this.level.playSound(null, this.worldPosition, SoundRegistry.LATHE_START_SOUND.get(), SoundSource.BLOCKS, 0.2F, 1.0F);
                 running = true;
             }
             if (currentProgress % 20 == 0 && running && this.level != null)
-                this.level.playSound(null, this.getBlockPos(), SoundRegistry.LATHE_ACTIVE_SOUND.get(), SoundSource.BLOCKS, 0.2F, 1.0F);
+                this.level.playSound(null, this.worldPosition, SoundRegistry.LATHE_ACTIVE_SOUND.get(), SoundSource.BLOCKS, 0.2F, 1.0F);
             progress();
             setChanged(level, blockPos, blockState);
             if (currentProgress >= maxProgress) {
@@ -222,7 +222,7 @@ public class LatheMachineEntity extends BlockEntity implements MenuProvider {
                         5
                 );
                 if (!hasValidRecipe() && running)
-                    this.level.playSound(null, this.getBlockPos(), SoundRegistry.LATHE_STOP_SOUND.get(), SoundSource.BLOCKS, 0.2F, 1.0F);
+                    this.level.playSound(null, this.worldPosition, SoundRegistry.LATHE_STOP_SOUND.get(), SoundSource.BLOCKS, 0.2F, 1.0F);
             }
             running = false;
         }

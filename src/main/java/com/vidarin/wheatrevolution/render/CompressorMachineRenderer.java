@@ -74,31 +74,33 @@ public class CompressorMachineRenderer implements BlockEntityRenderer<Compressor
         poseStack.popPose();
 
         // Render particles when the recipe is done
-        RandomSource random = Objects.requireNonNull(entity.getLevel()).random;
-        if (entity.getProgress() >= 100) {
-            for (int i = 0; i < 600 / (Minecraft.getInstance().getFps() + 1); i++) {
-                Minecraft.getInstance().particleEngine.createParticle(
-                        ParticleTypes.SMOKE,
-                        entity.getBlockPos().getX() + 0.5F,
-                        entity.getBlockPos().getY() + 0.15F,
-                        entity.getBlockPos().getZ() + 0.5F,
-                        random.nextFloat() * 0.1F - 0.2F,
-                        0.0F,
-                        random.nextFloat() * 0.1F - 0.2F
-                );
-                if (random.nextBoolean()) {
+        try {
+            RandomSource random = Objects.requireNonNull(entity.getLevel()).random;
+            if (entity.getProgress() >= 100) {
+                for (int i = 0; i < 600 / (Minecraft.getInstance().getFps() + 1); i++) {
                     Minecraft.getInstance().particleEngine.createParticle(
-                            ParticleTypes.LAVA,
+                            ParticleTypes.SMOKE,
                             entity.getBlockPos().getX() + 0.5F,
                             entity.getBlockPos().getY() + 0.15F,
                             entity.getBlockPos().getZ() + 0.5F,
-                            random.nextFloat() * 0.2F - 0.4F,
-                            0.2F,
-                            random.nextFloat() * 0.2F - 0.4F
+                            random.nextFloat() * 0.1F - 0.2F,
+                            0.0F,
+                            random.nextFloat() * 0.1F - 0.2F
                     );
+                    if (random.nextBoolean()) {
+                        Minecraft.getInstance().particleEngine.createParticle(
+                                ParticleTypes.LAVA,
+                                entity.getBlockPos().getX() + 0.5F,
+                                entity.getBlockPos().getY() + 0.15F,
+                                entity.getBlockPos().getZ() + 0.5F,
+                                random.nextFloat() * 0.2F - 0.4F,
+                                0.2F,
+                                random.nextFloat() * 0.2F - 0.4F
+                        );
+                    }
                 }
             }
-        }
+        } catch (IllegalArgumentException ignored) {}
     }
 
     private int getLight(Level level, BlockPos pos) {

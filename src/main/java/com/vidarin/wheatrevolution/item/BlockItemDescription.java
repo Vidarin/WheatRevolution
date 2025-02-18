@@ -12,11 +12,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class BlockItemDescription extends BlockItem {
-    private String blockRegName;
+    private final String blockRegName;
 
     public BlockItemDescription(Block block, Properties properties, String name) {
         super(block, properties);
-        this.blockRegName = blockRegName;
+        this.blockRegName = name;
     }
 
     @Override

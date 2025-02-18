@@ -38,13 +38,10 @@ public class OreFactoryMachineScreen extends AbstractContainerScreen<OreFactoryM
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y, int processId) {
         if (menu.isCrafting(processId))
             guiGraphics.blit(TEXTURE, x + 37 + (30 * processId), y + 34, 176, 0, 8, menu.getProgress(processId));
-        if (menu.isCrafting(processId)) WheatRevolution.LOGGER.info("rendered progress arrow!");
     }
 
     private void renderHeatBar(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.getHeatLevel() > 0) {
-            guiGraphics.blit(TEXTURE, x + 159, y + 10, 190, 0, 4, menu.getHeatLevel());
-        }
+        guiGraphics.blit(TEXTURE, x + 159, y + 10, 190, 0, 4, 46 - menu.getHeatLevel());
     }
 
     @Override

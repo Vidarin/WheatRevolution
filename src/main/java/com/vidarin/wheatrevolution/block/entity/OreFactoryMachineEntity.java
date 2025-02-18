@@ -1,10 +1,12 @@
 package com.vidarin.wheatrevolution.block.entity;
 
+import com.vidarin.wheatrevolution.block.OreFactoryMachineBlock;
 import com.vidarin.wheatrevolution.gui.menu.OreFactoryMachineMenu;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import com.vidarin.wheatrevolution.recipe.OreFactoryRecipe;
 import com.vidarin.wheatrevolution.recipe.adapter.OreFactoryBlastRecipeAdapter;
 import com.vidarin.wheatrevolution.registry.BlockEntityRegistry;
+import net.mcreator.wheat_death_of_the_universe.network.WheatdeathoftheuniverseModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -47,7 +49,7 @@ public class OreFactoryMachineEntity extends BlockEntity implements MenuProvider
             setChanged();
             assert level != null;
             if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }
     };
@@ -74,6 +76,10 @@ public class OreFactoryMachineEntity extends BlockEntity implements MenuProvider
     private float maxProgress = 100.0F;
 
     private float heatLevel = 0.0F;
+
+    private int ticksUntilSound = 0;
+
+    private boolean shouldUnlit = false;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
@@ -179,11 +185,16 @@ public class OreFactoryMachineEntity extends BlockEntity implements MenuProvider
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+        if (!isRunning())
+            shouldUnlit = true;
+
+        // Process recipes
         for (int processId = 0; processId < 4; processId++) {
             if (hasValidRecipe(processId)) {
                 progress(processId);
-                if (processId == 3)
+                if (processId == 3) {
                     setChanged(level, blockPos, blockState);
+                }
                 if (isFinished(processId)) {
                     finishRecipe(processId);
                     resetProgress(processId);
@@ -192,19 +203,48 @@ public class OreFactoryMachineEntity extends BlockEntity implements MenuProvider
                 resetProgress(processId);
             }
         }
-        heatLevel -= 0.1F;
+
+        if (isRunning())
+            shouldUnlit = false;
+
+        // Update heat level
+        if (heatLevel > 0.0F) {
+            if (isRunning())
+                heatLevel -= 0.02F;
+            else
+                heatLevel -= 0.1F;
+        }
         if (!inventoryHandler.getStackInSlot(FUEL_SLOT).isEmpty()) {
             if (AbstractFurnaceBlockEntity.isFuel(inventoryHandler.getStackInSlot(FUEL_SLOT)) && heatLevel < 100.0F) {
-                heatLevel += (float) ForgeHooks.getBurnTime(inventoryHandler.getStackInSlot(FUEL_SLOT), RecipeType.BLASTING) / 120.0F;
+                heatLevel += (float) ForgeHooks.getBurnTime(inventoryHandler.getStackInSlot(FUEL_SLOT), RecipeType.BLASTING) / 360.0F;
                 inventoryHandler.extractItem(FUEL_SLOT, 1, false);
                 if (this.level != null)
-                    this.level.playSound(null, this.getBlockPos(), SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.5F, 0.8F);
+                    this.level.playSound(null, this.worldPosition, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.2F, 0.8F);
             }
         }
-        if (heatLevel > 100.0F) {
+        if (heatLevel > 100.0F)
             heatLevel = 100.0F;
+        if (heatLevel < 0.0F)
+            heatLevel = 0.0F;
+
+        // Add pollution
+        if (isRunning() && this.level != null) {
+            WheatdeathoftheuniverseModVariables.WorldVariables.get(this.level).Temperature += 0.005D;
         }
+
+        // Handle sounds
+        if (this.isRunning() && this.level != null) {
+            if (ticksUntilSound <= 0) {
+                this.level.playSound(null, this.worldPosition, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.8F, 1.0F);
+                ticksUntilSound = 20;
+            } else {
+                ticksUntilSound--;
+            }
+        }
+
+        setLit();
     }
+
 
     private void resetProgress(int processId) {
         switch (processId) {
@@ -259,10 +299,10 @@ public class OreFactoryMachineEntity extends BlockEntity implements MenuProvider
 
     private void progress(int processId) {
         switch (processId) {
-            case 0 -> this.currentProgress1 += 0.025F * heatLevel;
-            case 1 -> this.currentProgress2 += 0.025F * heatLevel;
-            case 2 -> this.currentProgress3 += 0.025F * heatLevel;
-            case 3 -> this.currentProgress4 += 0.025F * heatLevel;
+            case 0 -> this.currentProgress1 += 0.033F * heatLevel - 0.5F;
+            case 1 -> this.currentProgress2 += 0.033F * heatLevel - 0.5F;
+            case 2 -> this.currentProgress3 += 0.033F * heatLevel - 0.5F;
+            case 3 -> this.currentProgress4 += 0.033F * heatLevel - 0.5F;
         }
     }
 
@@ -325,6 +365,32 @@ public class OreFactoryMachineEntity extends BlockEntity implements MenuProvider
 
         boolean doesOutputHaveTheRightItem = this.inventoryHandler.getStackInSlot(outputSlot).isEmpty() || this.inventoryHandler.getStackInSlot(outputSlot).is(item);
         return doesOutputHaveTheRightItem && this.inventoryHandler.getStackInSlot(outputSlot).getCount() + count <= this.inventoryHandler.getStackInSlot(outputSlot).getMaxStackSize();
+    }
+
+    public void setLit() {
+        boolean isLit = this.getBlockState().getValue(OreFactoryMachineBlock.LIT);
+
+        if (this.level != null) {
+            if (!isLit && this.isRunning()) {
+                this.level.setBlock(this.worldPosition,
+                        this.getBlockState().setValue(OreFactoryMachineBlock.LIT, true),
+                        3);
+                this.level.sendBlockUpdated(this.worldPosition,
+                        this.getBlockState(),
+                        this.getBlockState().setValue(OreFactoryMachineBlock.LIT, false),
+                        3);
+            }
+            if (isLit && shouldUnlit) {
+                this.level.setBlock(this.worldPosition,
+                        this.getBlockState().setValue(OreFactoryMachineBlock.LIT, false),
+                        3);
+                this.level.sendBlockUpdated(this.worldPosition,
+                        this.getBlockState(),
+                        this.getBlockState().setValue(OreFactoryMachineBlock.LIT, false),
+                        3);
+                shouldUnlit = false;
+            }
+        }
     }
 
     @Override

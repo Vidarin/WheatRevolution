@@ -1,27 +1,50 @@
 {
   "variants": {
-    "facing=down": {
+    "facing=down,lit=false": {
       "model": "wheatrevolution:block/ore_factory_model",
       "y": 90
     },
-    "facing=east": {
+    "facing=east,lit=false": {
       "model": "wheatrevolution:block/ore_factory_model",
       "y": 180
     },
-    "facing=north": {
+    "facing=north,lit=false": {
       "model": "wheatrevolution:block/ore_factory_model",
       "y": 90
     },
-    "facing=south": {
+    "facing=south,lit=false": {
       "model": "wheatrevolution:block/ore_factory_model",
       "y": 270
     },
-    "facing=up": {
+    "facing=up,lit=false": {
       "model": "wheatrevolution:block/ore_factory_model",
       "y": 90
     },
-    "facing=west": {
+    "facing=west,lit=false": {
       "model": "wheatrevolution:block/ore_factory_model"
+    },
+    "facing=down,lit=true": {
+      "model": "wheatrevolution:block/lit_ore_factory_model",
+      "y": 90
+    },
+    "facing=east,lit=true": {
+      "model": "wheatrevolution:block/lit_ore_factory_model",
+      "y": 180
+    },
+    "facing=north,lit=true": {
+      "model": "wheatrevolution:block/lit_ore_factory_model",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "wheatrevolution:block/lit_ore_factory_model",
+      "y": 270
+    },
+    "facing=up,lit=true": {
+      "model": "wheatrevolution:block/lit_ore_factory_model",
+      "y": 90
+    },
+    "facing=west,lit=true": {
+      "model": "wheatrevolution:block/lit_ore_factory_model"
     }
   }
 }

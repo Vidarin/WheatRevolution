@@ -46,7 +46,7 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
             setChanged();
             assert level != null;
             if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }
     };
@@ -192,7 +192,7 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         if (hasValidRecipe() && !inCooldown) {
             if (currentProgress == 1 && this.level != null) {
-                this.level.playSound(null, this.getBlockPos(), SoundRegistry.COMPRESSOR_ACTIVE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
+                this.level.playSound(null, this.worldPosition, SoundRegistry.COMPRESSOR_ACTIVE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
             }
             progress();
             setChanged(level, blockPos, blockState);
@@ -207,7 +207,7 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
                 currentProgress = 0;
                 inCooldown = false;
                 if (this.level != null) {
-                    this.level.playSound(null, this.getBlockPos(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 0.1F, 2.0F);
+                    this.level.playSound(null, this.worldPosition, SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 0.1F, 2.0F);
                 }
             }
             if (this.level != null) {
@@ -233,8 +233,8 @@ public class CompressorMachineEntity extends BlockEntity implements MenuProvider
                 new ItemStack(result.getItem(), this.inventoryHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
 
         if (this.level != null) {
-            this.level.playSound(null, this.getBlockPos(), SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 0.1F, 0.8F);
-            this.level.playSound(null, this.getBlockPos(), SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.05F, 1.0F);
+            this.level.playSound(null, this.worldPosition, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 0.1F, 0.8F);
+            this.level.playSound(null, this.worldPosition, SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.05F, 1.0F);
         }
     }
 

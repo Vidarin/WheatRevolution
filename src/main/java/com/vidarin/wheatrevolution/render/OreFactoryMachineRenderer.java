@@ -17,27 +17,17 @@ public class OreFactoryMachineRenderer implements BlockEntityRenderer<OreFactory
     @Override
     public void render(OreFactoryMachineEntity entity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
         // Render particles
-        RandomSource random = Objects.requireNonNull(entity.getLevel()).random;
-        if (entity.isRunning() && random.nextInt(Minecraft.getInstance().getFps()) > Minecraft.getInstance().getFps() - 2) {
-            Minecraft.getInstance().particleEngine.createParticle(
-                    ParticleTypes.FLAME,
-                    entity.getBlockPos().getX() + 0.5F,
-                    entity.getBlockPos().getY() + 0.15F,
-                    entity.getBlockPos().getZ() + 0.5F,
-                    random.nextFloat() * 0.05F - 0.1F,
-                    0.1F,
-                    random.nextFloat() * 0.05F - 0.1F
-            );
-            Minecraft.getInstance().particleEngine.createParticle(
-                    ParticleTypes.SMOKE,
-                    entity.getBlockPos().getX() + 0.5F,
-                    entity.getBlockPos().getY() + 0.15F,
-                    entity.getBlockPos().getZ() + 0.5F,
-                    random.nextFloat() * 0.5F - 0.1F,
-                    0.1F,
-                    random.nextFloat() * 0.5F - 0.1F
-            );
-        }
+        try {
+            RandomSource random = Objects.requireNonNull(entity.getLevel()).random;
+            if (entity.isRunning() && random.nextInt(Minecraft.getInstance().getFps()) > Minecraft.getInstance().getFps() - 5) {
+                Minecraft.getInstance().particleEngine.createParticle(
+                        ParticleTypes.CAMPFIRE_SIGNAL_SMOKE,
+                        entity.getBlockPos().getX() + 0.5F,
+                        entity.getBlockPos().getY() + 2.0F,
+                        entity.getBlockPos().getZ() + 0.5F,
+                        0.0F, 0.2F, 0.0F
+                );
+            }
+        } catch (IllegalArgumentException ignored) {}
     }
-
 }
