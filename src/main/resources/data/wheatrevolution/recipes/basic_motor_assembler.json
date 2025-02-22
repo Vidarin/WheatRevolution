@@ -1,0 +1,22 @@
+{
+  "type": "wheatrevolution:assembling",
+  "ingredients": [
+    {
+      "ingredient": { "item": "minecraft:copper_ingot" },
+      "count": 2
+    },
+    {
+      "ingredient": { "item": "wheatrevolution:steel_rod" },
+      "count": 2
+    },
+    {
+      "ingredient": { "item": "wheatrevolution:steel_plate" },
+      "count": 1
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "wheatrevolution:basic_motor"
+  },
+  "time": 100
+}

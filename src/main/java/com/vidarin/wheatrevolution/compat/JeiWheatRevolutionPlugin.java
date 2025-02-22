@@ -1,10 +1,12 @@
 package com.vidarin.wheatrevolution.compat;
 
 
+import com.vidarin.wheatrevolution.gui.screen.AssemblerMachineScreen;
 import com.vidarin.wheatrevolution.gui.screen.CompressorMachineScreen;
 import com.vidarin.wheatrevolution.gui.screen.LatheMachineScreen;
 import com.vidarin.wheatrevolution.gui.screen.OreFactoryMachineScreen;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
+import com.vidarin.wheatrevolution.recipe.AssemblerRecipe;
 import com.vidarin.wheatrevolution.recipe.CompressorRecipe;
 import com.vidarin.wheatrevolution.recipe.LatheRecipe;
 import com.vidarin.wheatrevolution.recipe.OreFactoryRecipe;
@@ -32,6 +34,7 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
         registration.addRecipeCategories(new CompressingCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new LatheCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new OreFactoryCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new AssemblingCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -45,6 +48,8 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
         registration.addRecipes(LatheCategory.TYPE, latheRecipes);
         List<OreFactoryRecipe> oreFactoryRecipes = recipeManager.getAllRecipesFor(OreFactoryRecipe.Type.INSTANCE);
         registration.addRecipes(OreFactoryCategory.TYPE, oreFactoryRecipes);
+        List<AssemblerRecipe> assemblerRecipes = recipeManager.getAllRecipesFor(AssemblerRecipe.Type.INSTANCE);
+        registration.addRecipes(AssemblingCategory.TYPE, assemblerRecipes);
     }
 
     @Override
@@ -55,5 +60,7 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
                 LatheCategory.TYPE);
         registration.addRecipeClickArea(OreFactoryMachineScreen.class, 32, 33, 108, 20,
                 OreFactoryCategory.TYPE);
+        registration.addRecipeClickArea(AssemblerMachineScreen.class, 72, 32, 35, 18,
+                AssemblingCategory.TYPE);
     }
 }

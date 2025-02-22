@@ -2,6 +2,7 @@
   "variants": {
     "model=no_model": { "model": "minecraft:block/dirt" },
     "model=compressor_piston_basic": { "model": "wheatrevolution:block/compressor_piston_model" },
-    "model=lathe_rod": { "model": "wheatrevolution:block/lathe_rod_model" }
+    "model=lathe_rod": { "model": "wheatrevolution:block/lathe_rod_model" },
+    "model=assembler_gear": { "model": "wheatrevolution:block/assembler_gear_model" }
   }
 }

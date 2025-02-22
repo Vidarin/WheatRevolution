@@ -22,7 +22,7 @@ public class BlockItemDescription extends BlockItem {
     @Override
     @ParametersAreNonnullByDefault
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltip, flag);
         tooltip.add(Component.translatable("block.wheatrevolution." + blockRegName + ".desc"));
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 }

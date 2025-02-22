@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 import com.vidarin.wheatrevolution.block.LatheMachineBlock;
 import com.vidarin.wheatrevolution.block.ModelBlock;
 import com.vidarin.wheatrevolution.block.entity.LatheMachineEntity;
-import com.vidarin.wheatrevolution.registry.BlockRegistry;
+import com.vidarin.wheatrevolution.util.rendering.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -30,6 +30,7 @@ import java.util.Objects;
 public class LatheMachineRenderer implements BlockEntityRenderer<LatheMachineEntity> {
     private float rotation;
 
+    @SuppressWarnings("unused")
     public LatheMachineRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
@@ -67,9 +68,7 @@ public class LatheMachineRenderer implements BlockEntityRenderer<LatheMachineEnt
             poseStack.popPose();
         }
 
-        BakedModel rodModel = Minecraft.getInstance().getBlockRenderer().getBlockModel(
-                BlockRegistry.MODEL_BLOCK.get().defaultBlockState().setValue(
-                        ModelBlock.MODEL_TYPE, ModelBlock.ModelTypes.LATHE_ROD));
+        BakedModel rodModel = RenderHelper.getModel(ModelBlock.ModelTypes.LATHE_ROD);
 
         // Render rod
         poseStack.pushPose();

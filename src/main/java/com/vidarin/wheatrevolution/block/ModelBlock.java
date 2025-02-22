@@ -33,7 +33,8 @@ public class ModelBlock extends Block {
     public enum ModelTypes implements StringRepresentable {
         NO_MODEL,
         COMPRESSOR_PISTON_BASIC,
-        LATHE_ROD;
+        LATHE_ROD,
+        ASSEMBLER_GEAR;
 
         @Override
         public String getSerializedName() {

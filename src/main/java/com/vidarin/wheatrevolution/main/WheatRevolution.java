@@ -87,8 +87,10 @@ public class WheatRevolution
             MenuScreens.register(GuiRegistry.COMPRESSOR_MACHINE_MENU.get(), CompressorMachineScreen::new);
             MenuScreens.register(GuiRegistry.LATHE_MACHINE_MENU.get(), LatheMachineScreen::new);
             MenuScreens.register(GuiRegistry.ORE_FACTORY_MACHINE_MENU.get(), OreFactoryMachineScreen::new);
+            MenuScreens.register(GuiRegistry.ASSEMBLER_MACHINE_MENU.get(), AssemblerMachineScreen::new);
 
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COMPRESSOR_MACHINE.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.ASSEMBLER_MACHINE.get(), RenderType.cutout());
         }
 
         @SubscribeEvent
@@ -96,6 +98,7 @@ public class WheatRevolution
             event.registerBlockEntityRenderer(BlockEntityRegistry.COMPRESSOR_MACHINE_ENTITY.get(), CompressorMachineRenderer::new);
             event.registerBlockEntityRenderer(BlockEntityRegistry.LATHE_MACHINE_ENTITY.get(), LatheMachineRenderer::new);
             event.registerBlockEntityRenderer(BlockEntityRegistry.ORE_FACTORY_MACHINE_ENTITY.get(), OreFactoryMachineRenderer::new);
+            event.registerBlockEntityRenderer(BlockEntityRegistry.ASSEMBLER_MACHINE_ENTITY.get(), AssemblerMachineRenderer::new);
         }
     }
 }

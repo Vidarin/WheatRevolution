@@ -38,6 +38,9 @@ public class BlockRegistry {
     public static final RegistryObject<Item> ORE_FACTORY_ITEM = ItemRegistry.ITEMS.register("ore_factory",
             () -> new BlockItemDescription(ORE_FACTORY_MACHINE.get(), new Item.Properties(), "ore_factory"));
 
+    public static final RegistryObject<Block> ASSEMBLER_MACHINE = registerBlock("assembler",
+            () -> new AssemblerMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
+
     /* OTHER */
     public static final RegistryObject<Block> MODEL_BLOCK = registerBlock("model_block", ModelBlock::new);
 

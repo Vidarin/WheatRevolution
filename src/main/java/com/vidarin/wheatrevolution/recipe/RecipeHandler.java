@@ -18,6 +18,9 @@ public class RecipeHandler {
     public static final RegistryObject<RecipeSerializer<LatheRecipe>> LATHE_SERIALIZER =
             SERIALIZERS.register("lathe", () -> LatheRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<AssemblerRecipe>> ASSEMBLER_SERIALIZER =
+            SERIALIZERS.register("assembling", () -> AssemblerRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

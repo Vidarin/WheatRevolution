@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.vidarin.wheatrevolution.block.ModelBlock;
 import com.vidarin.wheatrevolution.block.entity.CompressorMachineEntity;
-import com.vidarin.wheatrevolution.registry.BlockRegistry;
+import com.vidarin.wheatrevolution.util.rendering.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -26,6 +26,7 @@ import net.minecraftforge.client.model.data.ModelData;
 import java.util.Objects;
 
 public class CompressorMachineRenderer implements BlockEntityRenderer<CompressorMachineEntity> {
+    @SuppressWarnings("unused")
     public CompressorMachineRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
@@ -51,9 +52,7 @@ public class CompressorMachineRenderer implements BlockEntityRenderer<Compressor
 
         poseStack.popPose();
 
-        BakedModel pistonModel = Minecraft.getInstance().getBlockRenderer().getBlockModel(
-                BlockRegistry.MODEL_BLOCK.get().defaultBlockState().setValue(
-                        ModelBlock.MODEL_TYPE, ModelBlock.ModelTypes.COMPRESSOR_PISTON_BASIC));
+        BakedModel pistonModel = RenderHelper.getModel(ModelBlock.ModelTypes.COMPRESSOR_PISTON_BASIC);
 
         // Render piston
         poseStack.pushPose();

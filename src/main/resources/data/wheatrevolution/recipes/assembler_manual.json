@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MPM",
+    "CSC",
+    "ppp"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_casing"
+    },
+    "p": {
+      "item": "wheatrevolution:steel_plate"
+    },
+    "C": {
+      "item": "wheatrevolution:simple_electronic"
+    },
+    "P": {
+      "item": "wheatrevolution:basic_piston"
+    },
+    "M": {
+      "item": "wheatrevolution:basic_motor"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:assembler"
+  }
+}

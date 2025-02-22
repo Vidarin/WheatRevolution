@@ -1,0 +1,22 @@
+{
+  "type": "wheatrevolution:assembling",
+  "ingredients": [
+    {
+      "ingredient": { "item": "wheatrevolution:steel_rod" },
+      "count": 1
+    },
+    {
+      "ingredient": { "item": "wheatrevolution:basic_motor" },
+      "count": 1
+    },
+    {
+      "ingredient": { "item": "wheatrevolution:steel_plate" },
+      "count": 2
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "wheatrevolution:basic_piston"
+  },
+  "time": 150
+}

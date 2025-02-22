@@ -26,6 +26,11 @@ public class BlockEntityRegistry {
             () -> BlockEntityType.Builder.of(OreFactoryMachineEntity::new, BlockRegistry.ORE_FACTORY_MACHINE.get()).build(null)
     );
 
+    public static final RegistryObject<BlockEntityType<AssemblerMachineEntity>> ASSEMBLER_MACHINE_ENTITY = BLOCK_ENTITIES.register(
+            "assembler_block_entity",
+            () -> BlockEntityType.Builder.of(AssemblerMachineEntity::new, BlockRegistry.ASSEMBLER_MACHINE.get()).build(null)
+    );
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

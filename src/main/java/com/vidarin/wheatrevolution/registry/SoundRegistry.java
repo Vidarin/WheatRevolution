@@ -17,6 +17,8 @@ public class SoundRegistry {
     public static final RegistryObject<SoundEvent> LATHE_STOP_SOUND = registerSound("lathe_stop");
     public static final RegistryObject<SoundEvent> LATHE_ACTIVE_SOUND = registerSound("lathe_running");
 
+    public static final RegistryObject<SoundEvent> ASSEMBLER_SOUND = registerSound("assembler"); // Credits to GregTech
+
     private static RegistryObject<SoundEvent> registerSound(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(WheatRevolution.MODID, name)));
     }

@@ -12,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import java.util.Objects;
 
 public class OreFactoryMachineRenderer implements BlockEntityRenderer<OreFactoryMachineEntity> {
+    @SuppressWarnings("unused")
     public OreFactoryMachineRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override

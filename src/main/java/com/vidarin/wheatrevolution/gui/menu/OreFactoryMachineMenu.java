@@ -29,6 +29,7 @@ public class OreFactoryMachineMenu extends AbstractContainerMenu {
     public OreFactoryMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
         super(GuiRegistry.ORE_FACTORY_MACHINE_MENU.get(), containerId);
         checkContainerSize(inventory, 9);
+        // This fixes an error and I don't know why
         Optional<OreFactoryMachineEntity> entity = inventory.player.level().getBlockEntity(blockEntity.getBlockPos(), BlockEntityRegistry.ORE_FACTORY_MACHINE_ENTITY.get());
         if (entity.isPresent())
             this.blockEntity = entity.get();
@@ -75,7 +76,7 @@ public class OreFactoryMachineMenu extends AbstractContainerMenu {
 
     // CREDIT TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = 36;
-    private static final int TE_SLOT_COUNT = 8;
+    private static final int TE_SLOT_COUNT = 9;
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {

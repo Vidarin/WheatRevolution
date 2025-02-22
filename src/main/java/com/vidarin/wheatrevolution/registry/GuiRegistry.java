@@ -17,6 +17,7 @@ public class GuiRegistry {
     public static final RegistryObject<MenuType<CompressorMachineMenu>> COMPRESSOR_MACHINE_MENU = registerMenuType("compressor_menu", CompressorMachineMenu::new);
     public static final RegistryObject<MenuType<LatheMachineMenu>> LATHE_MACHINE_MENU = registerMenuType("lathe_menu", LatheMachineMenu::new);
     public static final RegistryObject<MenuType<OreFactoryMachineMenu>> ORE_FACTORY_MACHINE_MENU = registerMenuType("ore_factory_menu", OreFactoryMachineMenu::new);
+    public static final RegistryObject<MenuType<AssemblerMachineMenu>> ASSEMBLER_MACHINE_MENU = registerMenuType("assembler_menu", AssemblerMachineMenu::new);
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return GUIS.register(name, () -> IForgeMenuType.create(factory));
