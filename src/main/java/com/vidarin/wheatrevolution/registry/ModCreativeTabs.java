@@ -25,6 +25,7 @@ public class ModCreativeTabs {
 
                         output.accept(ItemRegistry.STEEL_PLATE.get());
                         output.accept(ItemRegistry.STEEL_ROD.get());
+                        output.accept(ItemRegistry.STEEL_GEAR.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> MOD_COMPONENTS = TABS.register("mod_components",
@@ -48,6 +49,7 @@ public class ModCreativeTabs {
                         output.accept(BlockRegistry.LATHE_MACHINE.get());
                         output.accept(BlockRegistry.ORE_FACTORY_MACHINE.get());
                         output.accept(BlockRegistry.ASSEMBLER_MACHINE.get());
+                        output.accept(BlockRegistry.CHEMICAL_REACTOR_MACHINE.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> MOD_MISC = TABS.register("mod_misc",
@@ -55,7 +57,7 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(WheatdeathoftheuniverseModItems.IMMACULATE.get()))
                     .title(Component.translatable("creativetab.mod_misc"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(WheatdeathoftheuniverseModItems.ERECTRONICS.get());
+                        output.accept(ItemRegistry.NULLIFIER.get());
                     })
                     .build());
 

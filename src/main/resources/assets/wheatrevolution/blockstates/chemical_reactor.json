@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "wheatrevolution:block/chemical_reactor_model",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "wheatrevolution:block/chemical_reactor_model",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "wheatrevolution:block/chemical_reactor_model",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "wheatrevolution:block/chemical_reactor_model",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "wheatrevolution:block/chemical_reactor_model",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "wheatrevolution:block/chemical_reactor_model"
+    }
+  }
+}

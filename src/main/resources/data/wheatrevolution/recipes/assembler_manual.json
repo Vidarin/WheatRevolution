@@ -4,14 +4,14 @@
   "pattern": [
     "MPM",
     "CSC",
-    "ppp"
+    "GGG"
   ],
   "key": {
     "S": {
       "item": "wheatrevolution:steel_casing"
     },
-    "p": {
-      "item": "wheatrevolution:steel_plate"
+    "G": {
+      "item": "wheatrevolution:steel_gear"
     },
     "C": {
       "item": "wheatrevolution:simple_electronic"

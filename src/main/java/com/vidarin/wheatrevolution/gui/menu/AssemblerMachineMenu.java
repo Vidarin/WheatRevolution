@@ -28,7 +28,7 @@ public class AssemblerMachineMenu extends AbstractContainerMenu {
 
     public AssemblerMachineMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
         super(GuiRegistry.ASSEMBLER_MACHINE_MENU.get(), containerId);
-        checkContainerSize(inventory, 9);
+        checkContainerSize(inventory, 7);
         Optional<AssemblerMachineEntity> entity = inventory.player.level().getBlockEntity(blockEntity.getBlockPos(), BlockEntityRegistry.ASSEMBLER_MACHINE_ENTITY.get());
         if (entity.isPresent())
             this.blockEntity = entity.get();

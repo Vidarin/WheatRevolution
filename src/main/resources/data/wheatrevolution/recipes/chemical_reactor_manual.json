@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CMC",
+    "GSG",
+    "R R"
+  ],
+  "key": {
+    "S": {
+      "item": "wheatrevolution:steel_casing"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "C": {
+      "item": "wheatrevolution:simple_electronic"
+    },
+    "R": {
+      "item": "wheatrevolution:steel_rod"
+    },
+    "M": {
+      "item": "wheatrevolution:basic_motor"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:chemical_reactor"
+  }
+}

@@ -8,6 +8,9 @@
   "gui.lathe": "Lathe",
   "gui.ore_factory": "Ore Factory",
   "gui.assembler": "Assembling Machine",
+  "gui.chemical_reactor": "Chemical Reactor",
+
+  "gui.chemical_reactor.flush_button": "Flush all Fluids",
 
   "subtitle.compressor": "Compressor Compresses",
 
@@ -15,15 +18,26 @@
   "subtitle.lathe_stop": "Lathe Stops",
   "subtitle.lathe_running": "Lathe Noises",
 
+  "subtitle.assembler": "Assembler Assembles",
+
+  "subtitle.chemical_reactor": "Chemical Reactor Does Something",
+
   "item.wheatrevolution.steel_ingot": "Steel Ingot",
   "item.wheatrevolution.steel_nugget": "Steel Nugget",
   "item.wheatrevolution.steel_plate": "Steel Plate",
   "item.wheatrevolution.steel_rod": "Steel Rod",
+  "item.wheatrevolution.steel_gear": "Steel Gear",
 
   "item.wheatrevolution.simple_electronic": "Simple Electronic",
 
   "item.wheatrevolution.basic_piston": "Basic Piston",
   "item.wheatrevolution.basic_motor": "Basic Motor",
+
+  "item.wheatrevolution.nullifier": "§4NULLIFIER",
+  "item.wheatrevolution.nullifier.desc": "§7Nullifies anything you look at",
+  "item.wheatrevolution.nullifier.mode.beam": "Mode: §4Beam",
+  "item.wheatrevolution.nullifier.mode.arc": "Mode: §5Arc",
+  "item.wheatrevolution.nullifier.mode.burst": "Mode: §1Burst",
 
   "block.wheatrevolution.steel_block": "Block of Steel",
   "block.wheatrevolution.steel_casing": "Steel Casing",
@@ -32,5 +46,6 @@
   "block.wheatrevolution.lathe": "Basic Lathe",
   "block.wheatrevolution.ore_factory": "Ore Factory",
   "block.wheatrevolution.ore_factory.desc": "§7Doubles as a better Blast Furnace",
-  "block.wheatrevolution.assembler": "Basic Assembling Machine"
+  "block.wheatrevolution.assembler": "Basic Assembling Machine",
+  "block.wheatrevolution.chemical_reactor": "Basic Chemical Reactor"
 }

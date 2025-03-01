@@ -3,5 +3,6 @@
   "lathe_start": { "subtitles": "subtitle.lathe_start", "sounds": ["wheatrevolution:lathe_start"] },
   "lathe_stop": { "subtitles": "subtitle.lathe_stop", "sounds": ["wheatrevolution:lathe_stop"] },
   "lathe_running": { "subtitles": "subtitle.lathe_running", "sounds": ["wheatrevolution:lathe_running"] },
-  "assembler": { "subtitles": "subtitle.assembler", "sounds": ["wheatrevolution:assembler"] }
+  "assembler": { "subtitles": "subtitle.assembler", "sounds": ["wheatrevolution:assembler"] },
+  "chemical_reactor": { "subtitles": "subtitle.chemical_reactor", "sounds": ["wheatrevolution:chemical_reactor"] }
 }

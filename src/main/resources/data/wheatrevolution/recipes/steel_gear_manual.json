@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RPR",
+    "P P",
+    "RPR"
+  ],
+  "key": {
+    "P": {
+      "item": "wheatrevolution:steel_plate"
+    },
+    "R": {
+      "item": "wheatrevolution:steel_rod"
+    }
+  },
+  "result": {
+    "item": "wheatrevolution:steel_gear"
+  }
+}

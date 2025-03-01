@@ -1,5 +1,6 @@
 package com.vidarin.wheatrevolution.registry;
 
+import com.vidarin.wheatrevolution.item.NullifierItem;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,11 +16,14 @@ public class ItemRegistry {
     public static final RegistryObject<Item> STEEL_NUGGET = registerSimple("steel_nugget");
     public static final RegistryObject<Item> STEEL_PLATE = registerSimple("steel_plate");
     public static final RegistryObject<Item> STEEL_ROD = registerSimple("steel_rod");
+    public static final RegistryObject<Item> STEEL_GEAR = registerSimple("steel_gear");
 
     public static final RegistryObject<Item> SIMPLE_ELECTRONIC = registerSimple("simple_electronic");
 
     public static final RegistryObject<Item> BASIC_MOTOR = registerSimple("basic_motor");
     public static final RegistryObject<Item> BASIC_PISTON = registerSimple("basic_piston");
+
+    public static final RegistryObject<Item> NULLIFIER = ITEMS.register("nullifier", NullifierItem::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

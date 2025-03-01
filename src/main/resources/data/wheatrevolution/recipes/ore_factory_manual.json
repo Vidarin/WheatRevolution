@@ -4,7 +4,7 @@
   "pattern": [
     "BBB",
     "BSB",
-    "PFP"
+    "FFF"
   ],
   "key": {
     "S": {
@@ -15,9 +15,6 @@
     },
     "B": {
       "item": "minecraft:bricks"
-    },
-    "P": {
-      "item": "wheatrevolution:basic_piston"
     }
   },
   "result": {

@@ -2,6 +2,7 @@ package com.vidarin.wheatrevolution.util.rendering;
 
 import net.minecraft.util.Mth;
 
+/* THIS CODE IS DIRECTLY TAKEN FROM VEIL: https://github.com/FoundryMC/Veil/tree/1.20 */
 @SuppressWarnings("unused")
 public class Easings {
     public static float ease(float x, Easing easing) {

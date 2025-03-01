@@ -1,0 +1,18 @@
+{
+  "type": "wheatrevolution:assembling",
+  "ingredients": [
+    {
+      "ingredient": { "item": "wheatrevolution:steel_plate" },
+      "count": 2
+    },
+    {
+      "ingredient": { "item": "wheatrevolution:steel_rod" },
+      "count": 4
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "wheatrevolution:steel_gear"
+  },
+  "time": 180
+}

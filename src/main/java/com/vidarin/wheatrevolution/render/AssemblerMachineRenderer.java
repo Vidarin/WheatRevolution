@@ -23,7 +23,7 @@ public class AssemblerMachineRenderer implements BlockEntityRenderer<AssemblerMa
 
     @Override
     public void render(AssemblerMachineEntity entity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
-        Animation cogPath = Animation.create(true,
+        Animation gearPath = Animation.create(true,
                 new Animation.Keyframe(60),
                 new Animation.Keyframe(60).withRotation(360, 0, 0)
         );
@@ -51,7 +51,7 @@ public class AssemblerMachineRenderer implements BlockEntityRenderer<AssemblerMa
 
             poseStack.scale(0.7F, 0.7F, 0.7F);
 
-            Vec3 rotation = cogPath.frameAtProgress(entity.getProgress() / 30.0F).getRotation();
+            Vec3 rotation = gearPath.frameAtProgress(entity.getProgress() / 30.0F).getRotation();
 
             poseStack.mulPose(Axis.XP.rotationDegrees((float) rotation.x + (15.0F * cogId)));
 

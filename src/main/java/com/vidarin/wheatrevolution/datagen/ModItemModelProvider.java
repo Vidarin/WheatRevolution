@@ -21,6 +21,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         itemGenerated(ItemRegistry.STEEL_NUGGET);
         itemGenerated(ItemRegistry.STEEL_PLATE);
         itemHandheld(ItemRegistry.STEEL_ROD);
+        itemGenerated(ItemRegistry.STEEL_GEAR);
 
         itemGenerated(ItemRegistry.SIMPLE_ELECTRONIC);
 

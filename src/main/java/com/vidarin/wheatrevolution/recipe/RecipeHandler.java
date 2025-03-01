@@ -21,6 +21,9 @@ public class RecipeHandler {
     public static final RegistryObject<RecipeSerializer<AssemblerRecipe>> ASSEMBLER_SERIALIZER =
             SERIALIZERS.register("assembling", () -> AssemblerRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<ChemicalReactorRecipe>> CHEMICAL_REACTOR_SERIALIZER =
+            SERIALIZERS.register("chemical_reactor", () -> ChemicalReactorRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

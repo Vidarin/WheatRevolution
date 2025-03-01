@@ -1,5 +1,6 @@
-// 1.20.1	2025-02-19T18:52:22.9802908	Loot Tables
+// 1.20.1	2025-02-23T11:20:39.2550455	Loot Tables
 99327bb040a297dae7648119d4e7a40e92784ed9 data/wheatrevolution/loot_tables/blocks/assembler.json
+7938c81ce24cb0325823d75080f2351652e485c0 data/wheatrevolution/loot_tables/blocks/chemical_reactor.json
 21171aaec14093d71b0f856ccc204457bed1ebfe data/wheatrevolution/loot_tables/blocks/compressor.json
 8342c757f063a22cf61655f3932137c9547d16c1 data/wheatrevolution/loot_tables/blocks/lathe.json
 eeea6f59d80628f0129abdcf5c530c8e1486d632 data/wheatrevolution/loot_tables/blocks/ore_factory.json

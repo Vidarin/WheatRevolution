@@ -5,7 +5,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
-/* CREDITS TO FOUNDRYMC FOR THIS CODE */
+/* SOME OF THIS CODE IS TAKEN FROM VEIL: https://github.com/FoundryMC/Veil/tree/1.20 */
 public class Animation {
     List<Keyframe> frames;
     boolean loop;

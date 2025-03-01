@@ -31,6 +31,11 @@ public class BlockEntityRegistry {
             () -> BlockEntityType.Builder.of(AssemblerMachineEntity::new, BlockRegistry.ASSEMBLER_MACHINE.get()).build(null)
     );
 
+    public static final RegistryObject<BlockEntityType<ChemicalReactorMachineEntity>> CHEMICAL_REACTOR_ENTITY = BLOCK_ENTITIES.register(
+            "chemical_reactor_entity",
+            () -> BlockEntityType.Builder.of(ChemicalReactorMachineEntity::new, BlockRegistry.CHEMICAL_REACTOR_MACHINE.get()).build(null)
+    );
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

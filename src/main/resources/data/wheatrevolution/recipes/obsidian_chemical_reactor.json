@@ -1,0 +1,23 @@
+{
+  "type": "wheatrevolution:chemical_reactor",
+  "item_inputs": [],
+  "fluid_inputs": [
+    {
+      "fluid": "minecraft:water",
+      "amount": 2000
+    },
+    {
+      "fluid": "minecraft:lava",
+      "amount": 1000
+    }
+  ],
+  "item_output": {
+    "count": 1,
+    "item": "minecraft:obsidian"
+  },
+  "fluid_output": {
+    "fluid": "minecraft:water",
+    "amount": 1000
+  },
+  "time": 100
+}

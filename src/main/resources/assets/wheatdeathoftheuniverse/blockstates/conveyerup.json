@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,blockstate=0": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model"
+    },
+    "facing=east,blockstate=0": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 90
+    },
+    "facing=south,blockstate=0": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 180
+    },
+    "facing=west,blockstate=0": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 270
+    },
+    "facing=north,blockstate=1": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model"
+    },
+    "facing=east,blockstate=1": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 90
+    },
+    "facing=south,blockstate=1": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 180
+    },
+    "facing=west,blockstate=1": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 270
+    },
+    "facing=north,blockstate=2": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model"
+    },
+    "facing=east,blockstate=2": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 90
+    },
+    "facing=south,blockstate=2": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 180
+    },
+    "facing=west,blockstate=2": {
+      "model": "wheatrevolution:block/conveyer_belt_up_model",
+      "y": 270
+    }
+  }
+}

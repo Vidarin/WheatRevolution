@@ -41,6 +41,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block> ASSEMBLER_MACHINE = registerBlock("assembler",
             () -> new AssemblerMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
 
+    public static final RegistryObject<Block> CHEMICAL_REACTOR_MACHINE = registerBlock("chemical_reactor",
+            () -> new ChemicalReactorMachineBlock(BlockBehaviour.Properties.copy(STEEL_BLOCK.get()).noOcclusion()));
+
     /* OTHER */
     public static final RegistryObject<Block> MODEL_BLOCK = registerBlock("model_block", ModelBlock::new);
 

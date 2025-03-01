@@ -1,7 +1,8 @@
-// 1.20.1	2025-02-15T20:29:09.5940972	Item Models: wheatrevolution
+// 1.20.1	2025-02-23T09:36:39.894252	Item Models: wheatrevolution
 aca0b2884f69aa2996b3220a9b4111d48b09c6a3 assets/wheatrevolution/models/item/basic_motor.json
 7f8582fb995e93bc0f69ef727e0f11007d5629b7 assets/wheatrevolution/models/item/basic_piston.json
 427d741eedd3c9101fd0ab52780648dd40b02bca assets/wheatrevolution/models/item/simple_electronic.json
+f18c2e4c6886ec9332be0826881debb1717a2f9d assets/wheatrevolution/models/item/steel_gear.json
 3bb59890b923e50387dee438e3c34da49adb8ba0 assets/wheatrevolution/models/item/steel_ingot.json
 940feebf185b29b6eb2078abefe500d17b02e8fc assets/wheatrevolution/models/item/steel_nugget.json
 3c89fe5567b9f4312b5b1b5cbbfcd0efb20732a9 assets/wheatrevolution/models/item/steel_plate.json

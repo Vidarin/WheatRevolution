@@ -1,15 +1,9 @@
 package com.vidarin.wheatrevolution.compat;
 
 
-import com.vidarin.wheatrevolution.gui.screen.AssemblerMachineScreen;
-import com.vidarin.wheatrevolution.gui.screen.CompressorMachineScreen;
-import com.vidarin.wheatrevolution.gui.screen.LatheMachineScreen;
-import com.vidarin.wheatrevolution.gui.screen.OreFactoryMachineScreen;
+import com.vidarin.wheatrevolution.gui.screen.*;
 import com.vidarin.wheatrevolution.main.WheatRevolution;
-import com.vidarin.wheatrevolution.recipe.AssemblerRecipe;
-import com.vidarin.wheatrevolution.recipe.CompressorRecipe;
-import com.vidarin.wheatrevolution.recipe.LatheRecipe;
-import com.vidarin.wheatrevolution.recipe.OreFactoryRecipe;
+import com.vidarin.wheatrevolution.recipe.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -35,6 +29,7 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
         registration.addRecipeCategories(new LatheCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new OreFactoryCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new AssemblingCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ChemicalReactorCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -50,6 +45,8 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
         registration.addRecipes(OreFactoryCategory.TYPE, oreFactoryRecipes);
         List<AssemblerRecipe> assemblerRecipes = recipeManager.getAllRecipesFor(AssemblerRecipe.Type.INSTANCE);
         registration.addRecipes(AssemblingCategory.TYPE, assemblerRecipes);
+        List<ChemicalReactorRecipe> chemicalReactorRecipes = recipeManager.getAllRecipesFor(ChemicalReactorRecipe.Type.INSTANCE);
+        registration.addRecipes(ChemicalReactorCategory.TYPE, chemicalReactorRecipes);
     }
 
     @Override
@@ -62,5 +59,7 @@ public class JeiWheatRevolutionPlugin implements IModPlugin {
                 OreFactoryCategory.TYPE);
         registration.addRecipeClickArea(AssemblerMachineScreen.class, 72, 32, 35, 18,
                 AssemblingCategory.TYPE);
+        registration.addRecipeClickArea(ChemicalReactorMachineScreen.class, 61, 36, 35, 16,
+                ChemicalReactorCategory.TYPE);
     }
 }

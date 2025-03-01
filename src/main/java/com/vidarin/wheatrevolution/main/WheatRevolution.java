@@ -2,13 +2,13 @@ package com.vidarin.wheatrevolution.main;
 
 import com.mojang.logging.LogUtils;
 import com.vidarin.wheatrevolution.gui.screen.*;
+import com.vidarin.wheatrevolution.network.WheatRevolutionPacketHandler;
 import com.vidarin.wheatrevolution.recipe.RecipeHandler;
 import com.vidarin.wheatrevolution.registry.*;
 import com.vidarin.wheatrevolution.render.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +22,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 @Mod(WheatRevolution.MODID)
@@ -60,14 +59,7 @@ public class WheatRevolution
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        LOGGER.info("{}{}", Config.magicNumberIntroduction, Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        event.enqueueWork(WheatRevolutionPacketHandler::register);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {}
@@ -88,6 +80,7 @@ public class WheatRevolution
             MenuScreens.register(GuiRegistry.LATHE_MACHINE_MENU.get(), LatheMachineScreen::new);
             MenuScreens.register(GuiRegistry.ORE_FACTORY_MACHINE_MENU.get(), OreFactoryMachineScreen::new);
             MenuScreens.register(GuiRegistry.ASSEMBLER_MACHINE_MENU.get(), AssemblerMachineScreen::new);
+            MenuScreens.register(GuiRegistry.CHEMICAL_REACTOR_MACHINE_MENU.get(), ChemicalReactorMachineScreen::new);
 
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COMPRESSOR_MACHINE.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.ASSEMBLER_MACHINE.get(), RenderType.cutout());
@@ -99,6 +92,7 @@ public class WheatRevolution
             event.registerBlockEntityRenderer(BlockEntityRegistry.LATHE_MACHINE_ENTITY.get(), LatheMachineRenderer::new);
             event.registerBlockEntityRenderer(BlockEntityRegistry.ORE_FACTORY_MACHINE_ENTITY.get(), OreFactoryMachineRenderer::new);
             event.registerBlockEntityRenderer(BlockEntityRegistry.ASSEMBLER_MACHINE_ENTITY.get(), AssemblerMachineRenderer::new);
+            event.registerBlockEntityRenderer(BlockEntityRegistry.CHEMICAL_REACTOR_ENTITY.get(), ChemicalReactorMachineRenderer::new);
         }
     }
 }

@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
 
 // This is a block for storing models for rendering and is not meant to be placed.
-
 public class ModelBlock extends Block {
     public static final EnumProperty<ModelTypes> MODEL_TYPE = EnumProperty.create("model", ModelTypes.class);
 
@@ -34,7 +33,8 @@ public class ModelBlock extends Block {
         NO_MODEL,
         COMPRESSOR_PISTON_BASIC,
         LATHE_ROD,
-        ASSEMBLER_GEAR;
+        ASSEMBLER_GEAR,
+        CHEMICAL_REACTOR_ROTOR;
 
         @Override
         public String getSerializedName() {

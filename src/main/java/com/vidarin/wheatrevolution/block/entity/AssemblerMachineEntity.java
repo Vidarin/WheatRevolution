@@ -63,7 +63,7 @@ public class AssemblerMachineEntity extends BlockEntity implements MenuProvider 
     public AssemblerMachineEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.ASSEMBLER_MACHINE_ENTITY.get(), pos, state);
 
-        this.energyStorage = new EnergyStorage(2048, 16) {
+        this.energyStorage = new EnergyStorage(4096, 32) {
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
                 int value = super.receiveEnergy(maxReceive, simulate);
@@ -173,18 +173,8 @@ public class AssemblerMachineEntity extends BlockEntity implements MenuProvider 
         lazyItemHandler.invalidate();
     }
 
-    public @Nullable ItemStack getStackForRendering(int slot) {
-        if (inventoryHandler.getStackInSlot(slot).isEmpty())
-            return null;
-        return inventoryHandler.getStackInSlot(slot);
-    }
-
     public int getProgress() {
         return currentProgress;
-    }
-
-    public int getMaxProgress() {
-        return maxProgress;
     }
 
     @Override
@@ -253,7 +243,7 @@ public class AssemblerMachineEntity extends BlockEntity implements MenuProvider 
 
     private void progress() {
         this.currentProgress++;
-        this.energyStorage.extractEnergy(4, false);
+        this.energyStorage.extractEnergy(8, false);
     }
 
     private boolean hasValidRecipe() {

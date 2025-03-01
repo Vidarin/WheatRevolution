@@ -24,6 +24,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.LATHE_MACHINE.get());
         dropSelf(BlockRegistry.ORE_FACTORY_MACHINE.get());
         dropSelf(BlockRegistry.ASSEMBLER_MACHINE.get());
+        dropSelf(BlockRegistry.CHEMICAL_REACTOR_MACHINE.get());
     }
 
     @Override
